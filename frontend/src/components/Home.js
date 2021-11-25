@@ -8,6 +8,7 @@ const Home = () => {
   const [tickets, setTickets] = useState([]);
   const [selectedTicket, setSelectedTicket] = useState({ id: null });
   const [pageNumber, setPageNumber] = useState(0);
+  const [fetchStatus, setFetchstatus] = useState(null);
 
   const ticketsPerPage = 25;
   const ticketsVisited = pageNumber * ticketsPerPage;
@@ -35,13 +36,19 @@ const Home = () => {
 
   const fetchTickets = () => {
     setIsLoading(true);
-    fetch("http://localhost:8000/getAllTickets")
-      .then((res) => res.json())
-      .then((data) => {
-        data = JSON.parse(data);
-        setTickets(data.tickets);
-        setIsLoading(false);
-      });
+    fetch("http://localhost:8000/getAllTickets").then((res) => {
+      // console.log(res);
+      if (res.ok) {
+        res.json().then((data) => {
+          data = JSON.parse(data);
+          setTickets(data.tickets);
+          setFetchstatus(true);
+          setIsLoading(false);
+        });
+      } else {
+        setFetchstatus(false);
+      }
+    });
   };
 
   if (isLoading) {
@@ -52,63 +59,74 @@ const Home = () => {
     );
   }
 
-  return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center container mx-auto">
-      <p className="text-4xl pb-20">
-        <b>ZCC Ticket Viewer</b>
-      </p>
-      {tickets.length !== 0 ? (
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <div className="flex flex-col overflow-auto h-80">
-              {displayTickets}
-            </div>
-            <div className="ml-16 mt-10">
-              <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
-                pageCount={pageCount}
-                onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
-              />
-            </div>
-          </div>
-          <div>
-            {selectedTicket.id ? (
-              <div>
-                <Link to={`/ticket/${selectedTicket.id}`}>
-                  <button className="text-2xl pb-2">
-                    <b>Subject</b> : {selectedTicket.subject}
-                  </button>
-                </Link>
-                <p>
-                  {" "}
-                  <b> ID </b> : {selectedTicket.id}{" "}
-                </p>
-                <p>
-                  {" "}
-                  <b> Description </b> : {selectedTicket.description}
-                </p>
+  if (fetchStatus == false) {
+    return (
+      <div className="h-screen w-screen flex flex-col items-center justify-center container mx-auto">
+        <p className="text-4xl pb-20">
+          <b>ZCC Ticket Viewer</b>
+        </p>
+        <p>Sorry, Tickets couldn't be fetched. The API is unavailable.</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className="h-screen w-screen flex flex-col items-center justify-center container mx-auto">
+        <p className="text-4xl pb-20">
+          <b>ZCC Ticket Viewer</b>
+        </p>
+        {tickets.length !== 0 ? (
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <div className="flex flex-col overflow-auto h-80">
+                {displayTickets}
               </div>
-            ) : (
-              <p>Please click on a ticket!</p>
-            )}
+              <div className="ml-16 mt-10">
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={pageCount}
+                  onPageChange={changePage}
+                  containerClassName={"paginationBttns"}
+                  previousLinkClassName={"previousBttn"}
+                  nextLinkClassName={"nextBttn"}
+                  disabledClassName={"paginationDisabled"}
+                  activeClassName={"paginationActive"}
+                />
+              </div>
+            </div>
+            <div>
+              {selectedTicket.id ? (
+                <div>
+                  <Link to={`/ticket/${selectedTicket.id}`}>
+                    <button className="text-2xl pb-2">
+                      <b>Subject</b> : {selectedTicket.subject}
+                    </button>
+                  </Link>
+                  <p>
+                    {" "}
+                    <b> ID </b> : {selectedTicket.id}{" "}
+                  </p>
+                  <p>
+                    {" "}
+                    <b> Description </b> : {selectedTicket.description}
+                  </p>
+                </div>
+              ) : (
+                <p>Please click on a ticket!</p>
+              )}
+            </div>
           </div>
-        </div>
-      ) : (
-        <button
-          className="rounded border bg-blue-200 p-2 m-2"
-          onClick={fetchTickets}
-        >
-          Fetch Tickets
-        </button>
-      )}
-    </div>
-  );
+        ) : (
+          <button
+            className="rounded border bg-blue-200 p-2 m-2"
+            onClick={fetchTickets}
+          >
+            Fetch Tickets
+          </button>
+        )}
+      </div>
+    );
+  }
 };
 
 export default Home;

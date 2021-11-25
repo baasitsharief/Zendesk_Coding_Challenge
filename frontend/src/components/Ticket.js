@@ -8,7 +8,7 @@ const Ticket = () => {
 
   useEffect(() => {
     fetch(`http://localhost:8000/getTicket/${id}`).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.ok) {
         res.json().then((data) => {
           data = JSON.parse(data);
