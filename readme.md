@@ -1,10 +1,36 @@
+## Technologies used
+
+For the backend server
+```
+nodeJS
+expressJS
+dotenv
+nodemon
+```
+
+For the application
+```
+reactJS
+react-dom-router
+cors
+react-paginate
+tailwind-css
+react-bootstrap
+react-dom
+```
+
+For Backend Testing 
+```
+chai
+chai-http
+```
+
 ## Usage
 
+from both backend and frontend folder
 ```
 npm install
 ```
-
-from both backend and frontend folder
 
 ## Starting the backend nodejs server
 
@@ -16,7 +42,6 @@ replace
   1. {subdomain} with your subdomain,
   2. {user id or user_token} with user id or taken
   3. {password or auth_token} with the password or generated oauth token
-
 ```
 URL = "https://mysubdomain.zendesk.com/api/v2/tickets.json"
 USER = "abc@gmail.com/token"
@@ -25,7 +50,6 @@ TICKET_URL = "https://mysubdomain.zendesk.com/api/v2/tickets/"
 ```
 
 from backend folder
-
 ```
 nodemon start server.js
 ```
