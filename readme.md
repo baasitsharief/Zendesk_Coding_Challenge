@@ -2,6 +2,8 @@
 
 A bare bones application based on nodejs and reactjs. Used tailwind for styling the react app.
 
+![Ticket Viewer Demo](demo.gif)
+
 ## Technologies used
 
 For the backend server
