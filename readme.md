@@ -40,14 +40,12 @@ npm install
 
 ## Starting the backend nodejs server
 
-Before starting the backend server change the environment variables in the dummy .env file in backend folder.
-
-For example -
-
-replace 
+Before starting the backend server change the environment variables in the dummy .env file in backend folder, replace 
   1. {subdomain} with your subdomain,
   2. {user id or user_token} with user id or taken
   3. {password or auth_token} with the password or generated oauth token
+
+For example -
 ```
 URL = "https://mysubdomain.zendesk.com/api/v2/tickets.json"
 USER = "abc@gmail.com/token"
