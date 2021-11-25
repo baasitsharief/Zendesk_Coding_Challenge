@@ -1,3 +1,7 @@
+##Zendesk Summer 2020 internship coding challenge
+
+A bare bones application based on nodejs and reactjs. Used tailwind for styling the react app.
+
 ## Technologies used
 
 For the backend server
