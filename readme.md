@@ -19,7 +19,7 @@ For the application
 reactJS
 react-dom-router
 cors
-react-paginate
+react-paginate  #for Pagination
 tailwind-css
 react-bootstrap
 react-dom
