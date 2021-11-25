@@ -37,3 +37,13 @@ from frontend folder
 ```
 yarn start
 ```
+
+## Testing
+
+### Backend testing
+
+from backend folder
+
+```
+mocha --exit test\getTickets.js
+```
