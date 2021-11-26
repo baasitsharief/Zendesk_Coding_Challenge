@@ -65,8 +65,7 @@ The backend is hosted on localhost:8000
 from frontend folder
 
 ```
-npm install -g yarn
-yarn start
+npm start
 ```
 
 The application is hosted at localhost:3000 and can be accessed through that link.
