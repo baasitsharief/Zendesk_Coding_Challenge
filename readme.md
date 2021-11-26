@@ -23,6 +23,7 @@ react-paginate  #for Pagination
 tailwind-css
 react-bootstrap
 react-dom
+yarn
 ```
 
 For Backend Testing 
@@ -64,6 +65,7 @@ The backend is hosted on localhost:8000
 from frontend folder
 
 ```
+npm install -g yarn
 yarn start
 ```
 
