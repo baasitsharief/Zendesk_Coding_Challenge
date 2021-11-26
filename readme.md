@@ -57,6 +57,7 @@ from backend folder
 ```
 nodemon start server.js
 ```
+The backend is hosted on localhost:8000
 
 ## Starting the frontend react app
 
@@ -65,6 +66,8 @@ from frontend folder
 ```
 yarn start
 ```
+
+The application is hosted at localhost:3000 and can be accessed through that link.
 
 # Testing
 
