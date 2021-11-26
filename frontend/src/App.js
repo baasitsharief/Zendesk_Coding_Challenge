@@ -7,8 +7,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/ticket/:id" element={<Ticket />} />
+        <Route path="/" element={<Home />} /> //Home page for all tickets
+        <Route path="/ticket/:id" element={<Ticket />} /> //Single ticket info
+        page
       </Routes>
     </BrowserRouter>
   );

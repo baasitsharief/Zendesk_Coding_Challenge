@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import "../Paginate.css";
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [tickets, setTickets] = useState([]);
-  const [selectedTicket, setSelectedTicket] = useState({ id: null });
-  const [pageNumber, setPageNumber] = useState(0);
-  const [fetchStatus, setFetchstatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // to monitor fetching data
+  const [tickets, setTickets] = useState([]); //to store tickets
+  const [selectedTicket, setSelectedTicket] = useState({ id: null }); //to monitor selected ticket
+  const [pageNumber, setPageNumber] = useState(0); //to monitor page number
+  const [fetchStatus, setFetchstatus] = useState(null); //fetch status to check if data could be fetched
 
   const ticketsPerPage = 25;
   const ticketsVisited = pageNumber * ticketsPerPage;
 
-  const displayTickets = tickets
+  const displayTickets = tickets // to show given slice of tickets in a page
     .slice(ticketsVisited, ticketsVisited + ticketsPerPage)
     .map((ticket) => {
       return (
@@ -60,6 +60,7 @@ const Home = () => {
   }
 
   if (fetchStatus == false) {
+    // if fetch failed
     return (
       <div className="h-screen w-screen flex flex-col items-center justify-center container mx-auto">
         <p className="text-4xl pb-20">
@@ -69,6 +70,7 @@ const Home = () => {
       </div>
     );
   } else {
+    // if fetch is in process or fetch is succesful
     return (
       <div className="h-screen w-screen flex flex-col items-center justify-center container mx-auto">
         <p className="text-4xl pb-20">

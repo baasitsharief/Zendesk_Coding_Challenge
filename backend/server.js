@@ -5,6 +5,7 @@ const cors = require("cors");
 var request = require("request");
 const { response } = require("express");
 
+//options for get request for all tickets
 var options = {
   url: process.env.URL,
   auth: {
@@ -18,6 +19,7 @@ const port = 8000;
 
 app.use(cors());
 
+//GET all tickets
 app.get("/getAllTickets", function (req, res) {
   request(options, (error, response, body) => {
     if (!error && response.statusCode == 200) {
@@ -28,9 +30,11 @@ app.get("/getAllTickets", function (req, res) {
   });
 });
 
+//GET single ticket
 app.get("/getTicket/:id", function (req, res) {
   request(
     {
+      //options for get request for single ticket with id == id
       url: process.env.TICKET_URL.concat(`${req.params.id}.json`),
       auth: {
         user: process.env.USER,

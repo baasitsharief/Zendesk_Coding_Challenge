@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 const Ticket = () => {
   const { id } = useParams();
-  const [ticket, setTicket] = useState({ status: null, data: null });
+  const [ticket, setTicket] = useState({ status: null, data: null }); //to monitor fetching and ticket data
 
   useEffect(() => {
     fetch(`http://localhost:8000/getTicket/${id}`).then((res) => {
@@ -21,6 +21,7 @@ const Ticket = () => {
   }, []);
 
   if (ticket.status === null) {
+    //if fetch is in process
     return (
       <div className="h-screen w-screen flex flex-col items-center justify-center container mx-auto">
         <p className="text-3xl pb-20">ZCC Ticket Viewer</p>
@@ -33,6 +34,7 @@ const Ticket = () => {
       </div>
     );
   } else if (ticket.status === false) {
+    //if fetch failed and returned 404
     return (
       <div className="h-screen w-screen flex flex-col items-center justify-center container mx-auto">
         <p className="text-3xl pb-20">ZCC Ticket Viewer</p>
@@ -45,6 +47,7 @@ const Ticket = () => {
       </div>
     );
   } else if (ticket.status === true) {
+    // if fetch is successful and returned 200
     return (
       <div className="h-screen w-screen flex flex-col items-center justify-center container mx-auto">
         <p className="text-4xl pb-20">
