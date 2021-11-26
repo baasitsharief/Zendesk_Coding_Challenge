@@ -12,13 +12,13 @@ nodeJS
 expressJS
 dotenv
 nodemon
+cors
 ```
 
 For the application
 ```
 reactJS
 react-dom-router
-cors
 react-paginate  #for Pagination
 tailwind-css
 react-bootstrap
